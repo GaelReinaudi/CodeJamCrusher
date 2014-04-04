@@ -191,7 +191,6 @@ public:
 	QString Solve() const;
 
 	mutable QString m_SolString;
-//	QTextStream &m_Out;
 
 	inline bool Calc(qulonglong n) const;
 	inline bool CanDo() const;

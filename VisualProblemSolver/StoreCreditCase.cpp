@@ -36,7 +36,6 @@ QVector<Pal012> rootlist10100;
 
 
 StoreCreditCase::StoreCreditCase()
-// 	: m_Out(*(new QTextStream(&m_SolString)))
 {
 }
 
@@ -87,18 +86,19 @@ inline bool StoreCreditCase::Calc(qulonglong n) const
 
 inline qulonglong StoreCreditCase::BinarySearch( long double Min, long double Max ) const
 {
-	qulonglong theN = 0;
 	qulonglong lo = 1;
-	qulonglong hi = 1000000000000000000;
+	qulonglong hi = Q_INT64_C(18446744073709551615);//18,446,744,073,709,551,615
+	qulonglong mid;
 	while (lo < hi) {
-	qulonglong mid = lo + (hi-lo)/2;
+		mid = lo + (hi-lo)/2;
 		if (Calc(mid) == true)
 			hi = mid;
 		else
-		lo = mid+1;
+			lo = mid+1;
 	}
 	if (Calc(lo) == false)
-		;                // p(x) is false for all x in S!
+		;  // p(x) is false for all x in S!
+	// lo is the least x for which p(x) is true
 
 	return lo - 1;
 }

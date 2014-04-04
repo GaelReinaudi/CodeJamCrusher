@@ -5,3 +5,4 @@
 /Release/
 /GeneratedFiles/
 /x64/
+*.pdb
