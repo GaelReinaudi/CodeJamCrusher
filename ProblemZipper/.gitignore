@@ -1,2 +1,7 @@
 /QtGuid4.dll
 /QtCored4.dll
+*.dll
+/Debug/
+/Release/
+/GeneratedFiles/
+/x64/

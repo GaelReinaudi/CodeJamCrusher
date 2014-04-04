@@ -1,4 +1,4 @@
-#include <QtGui>
+#include <QtWidgets>
 #include "problemzipper.h"
 
 ProblemZipper::ProblemZipper(QWidget *parent)
@@ -9,8 +9,8 @@ ProblemZipper::ProblemZipper(QWidget *parent)
 
 	setWindowTitle(tr("Problem Zipper"));
 
-	m_FolderCopyFilterOut << "Debug" << "Release" << "Release with Debug";// << "GeneratedFiles";
-	m_ExtensionCopyFilterOut << "ncb" << "suo";// << "sln";
+	m_FolderCopyFilterOut << "Debug" << "Release" << "Release with Debug" << "_UpgradeReport_Files" << "Backup" << "ipch";// << "GeneratedFiles";
+	m_ExtensionCopyFilterOut << "ncb" << "suo" << "sdf" << "htm" << "XML" << "gitignore" << "user" << "filters";// << "sln";
 
 	// sets some variable for a specific porject to copy
 	m_ToReplaceWithDeviceName = "StoreCredit";
