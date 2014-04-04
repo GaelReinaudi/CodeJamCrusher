@@ -1,0 +1,9 @@
+#include <QtGui>
+#include <QtCore>
+#include <QFile>
+#include <QTextStream>
+#include <QVarLengthArray>
+#include <QVector>
+#include <QList>
+#include <QtConcurrentMap>
+#include <QFutureWatcher>
