@@ -3,3 +3,7 @@
 /GeneratedFiles/
 *.sdf
 /_UpgradeReport_Files/
+/x64/
+/ipch/
+*.v11.suo
+*.opensdf

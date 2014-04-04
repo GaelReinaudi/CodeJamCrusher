@@ -1,7 +1,7 @@
 #ifndef VISUALPROBLEMSOLVER_H
 #define VISUALPROBLEMSOLVER_H
 
-#include <QtGui/QWidget>
+#include <QtWidgets/QWidget>
 #include "ui_visualproblemsolver.h"
 
 class StoreCreditCase;
@@ -16,7 +16,7 @@ class VisualProblemSolver : public QWidget
 	Q_OBJECT
 
 public:
-	VisualProblemSolver(QWidget *parent = 0, Qt::WFlags flags = 0);
+	VisualProblemSolver(QWidget *parent = 0, Qt::WindowFlags flags = 0);
 
 	~VisualProblemSolver();
 

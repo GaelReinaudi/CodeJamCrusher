@@ -5,7 +5,7 @@
 QFile m_FileIn;
 QFile m_FileOut;
 
-VisualProblemSolver::VisualProblemSolver(QWidget *parent, Qt::WFlags flags)
+VisualProblemSolver::VisualProblemSolver(QWidget *parent, Qt::WindowFlags flags)
 	: QWidget(parent, flags)
 	, m_NumberCase(0)
 	, m_ShowFileContents(true)
