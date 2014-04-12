@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "StoreCreditCase.h"
+#include "CookieClickerAlphaCase.h"
 #include <QtAlgorithms>
 #include <QPoint>
 
@@ -35,23 +35,23 @@ Pal012 IterRoot10100;
 QVector<Pal012> rootlist10100;
 
 
-StoreCreditCase::StoreCreditCase()
+CookieClickerAlphaCase::CookieClickerAlphaCase()
 {
 }
 
-QString SolveCase( const StoreCreditCase & Case )
+QString SolveCase( const CookieClickerAlphaCase & Case )
 {
 	return Case.Solve();
 }
 
-void StoreCreditCase::ParseCase( QTextStream & inputStream )
+void CookieClickerAlphaCase::ParseCase( QTextStream & inputStream )
 {
 	inputStream >> C;
 	inputStream >> F;
 	inputStream >> X;
 }
 
-QString StoreCreditCase::Solve() const
+QString CookieClickerAlphaCase::Solve() const
 {
 	QString caseSolution("Case #%1: %2");
 	caseSolution = caseSolution.arg(m_CaseNumber);
@@ -67,13 +67,13 @@ QString StoreCreditCase::Solve() const
 	return caseSolution;
 }
 
-inline bool StoreCreditCase::Calc(qulonglong n) const
+inline bool CookieClickerAlphaCase::Calc(qulonglong n) const
 {
 	qulonglong TsN = 2*r + 2 * n - 1;
 	return TsN > t/n;
 }
 
-inline qulonglong StoreCreditCase::BinarySearch( long double Min, long double Max ) const
+inline qulonglong CookieClickerAlphaCase::BinarySearch( long double Min, long double Max ) const
 {
 	qulonglong lo = 1;
 	qulonglong hi = Q_INT64_C(18446744073709551615);//18,446,744,073,709,551,615
@@ -93,9 +93,9 @@ inline qulonglong StoreCreditCase::BinarySearch( long double Min, long double Ma
 }
 
 
-inline double StoreCreditCase::compute() const
+inline double CookieClickerAlphaCase::compute() const
 {
-	const int Fmax = 100000;
+	const int Fmax = 50000;
 	double tF[Fmax];
 	tF[0] = 0.0;
 	int totalFarm = 0;
