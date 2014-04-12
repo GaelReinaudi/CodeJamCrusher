@@ -1,12 +1,12 @@
-#ifndef StoreCreditCase_H
-#define StoreCreditCase_H
+#ifndef MagicTrickCase_H
+#define MagicTrickCase_H
 
 #include "GoogleCase.h"
 #include <QTextStream>
 
-class StoreCreditCase;
+class MagicTrickCase;
 
-QString SolveCase(const StoreCreditCase & Case);
+QString SolveCase(const MagicTrickCase & Case);
 ///dont forget to add 1, 2, 3 manually
 class Pal012 
 {
@@ -183,11 +183,11 @@ skim:
 typedef int Line[4];
 typedef Line Grid[4];
 
-class StoreCreditCase : public GoogleCase
+class MagicTrickCase : public GoogleCase
 {
 public:
-	StoreCreditCase();
-	~StoreCreditCase() {}
+	MagicTrickCase();
+	~MagicTrickCase() {}
 
 	//! Re-implemented
 	void ParseCase(QTextStream & inputStream);
@@ -207,4 +207,4 @@ public:
 // 	mutable QVector<QVector<int> > tt;
 };
 
-#endif // StoreCreditCase_H
+#endif // MagicTrickCase_H

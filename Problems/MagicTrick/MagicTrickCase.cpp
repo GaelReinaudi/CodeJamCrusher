@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "StoreCreditCase.h"
+#include "MagicTrickCase.h"
 #include <QtAlgorithms>
 #include <QPoint>
 
@@ -35,16 +35,16 @@ Pal012 IterRoot10100;
 QVector<Pal012> rootlist10100;
 
 
-StoreCreditCase::StoreCreditCase()
+MagicTrickCase::MagicTrickCase()
 {
 }
 
-QString SolveCase( const StoreCreditCase & Case )
+QString SolveCase( const MagicTrickCase & Case )
 {
 	return Case.Solve();
 }
 
-void StoreCreditCase::ParseCase( QTextStream & inputStream )
+void MagicTrickCase::ParseCase( QTextStream & inputStream )
 {
 	inputStream >> guess1;
 	guess1--;
@@ -62,7 +62,7 @@ void StoreCreditCase::ParseCase( QTextStream & inputStream )
  	}
 }
 
-QString StoreCreditCase::Solve() const
+QString MagicTrickCase::Solve() const
 {
 	QString caseSolution("Case #%1: %2");
 	caseSolution = caseSolution.arg(m_CaseNumber);
@@ -100,13 +100,13 @@ QString StoreCreditCase::Solve() const
 	return caseSolution;
 }
 
-inline bool StoreCreditCase::Calc(qulonglong n) const
+inline bool MagicTrickCase::Calc(qulonglong n) const
 {
 	qulonglong TsN = 2*r + 2 * n - 1;
 	return TsN > t/n;
 }
 
-inline qulonglong StoreCreditCase::BinarySearch( long double Min, long double Max ) const
+inline qulonglong MagicTrickCase::BinarySearch( long double Min, long double Max ) const
 {
 	qulonglong lo = 1;
 	qulonglong hi = Q_INT64_C(18446744073709551615);//18,446,744,073,709,551,615
