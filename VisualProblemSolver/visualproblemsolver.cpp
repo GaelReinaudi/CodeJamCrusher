@@ -172,8 +172,8 @@ void VisualProblemSolver::LoadSample()
 	ui.pEditDrop->setPlainText(m_SampleTableFromWebSite);
 	ui.pGroupSamplOut->setVisible(true);
 
-//	MultiThreadedCompute(allCases);
-	SequencialCompute(allCases);
+	MultiThreadedCompute(allCases);
+//	SequencialCompute(allCases);
 }
 
 void VisualProblemSolver::LoadFile()
