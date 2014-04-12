@@ -95,27 +95,24 @@ inline qulonglong CookieClickerAlphaCase::BinarySearch( long double Min, long do
 
 inline double CookieClickerAlphaCase::compute() const
 {
-	const int Fmax = 50000;
-	double tF[Fmax];
+	const int Fmax = 20000000;
+	QVector<double> tF(Fmax);
 	tF[0] = 0.0;
 	int totalFarm = 0;
 	for(int i = 1; i < Fmax; ++i)
 	{
-		tF[i] = tF[i - 1] + C / (2 + double(totalFarm) * F);
-		++totalFarm;
+		tF[i] = tF[i - 1] + C / (2 + double(i-1) * F);
 	}
 	double tx = 1e20;
-	totalFarm = 0;
 	for(int i = 0; i < Fmax; ++i)
 	{
-		double newtX = tF[i] + X / (2 + double(totalFarm) * F);
+		double newtX = tF[i] + X / (2 + double(i) * F);
 		if(newtX < tx)
 			tx = newtX;
 		else 
 			break;
-		if(i==49999)
+		if(i==Fmax-1)
 			newtX = 0;
-		++totalFarm;
 	}
 	return tx;
 }

@@ -3,7 +3,7 @@
 	ProjectType="Visual C++"
 	Version="9.00"
 	Name="CookieClickerAlpha"
-	ProjectGUID="{fa17f165-0968-4b1e-bf53-4a14982a2754}"
+	ProjectGUID="{7806c97f-e9f4-4d2c-8298-9ceaf03ec067}"
 	Keyword="Qt4VSv1.0"
 	TargetFrameworkVersion="0"
 	>
