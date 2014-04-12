@@ -1,12 +1,12 @@
-#ifndef StoreCreditCase_H
-#define StoreCreditCase_H
+#ifndef MinesweeperMasterCase_H
+#define MinesweeperMasterCase_H
 
 #include "GoogleCase.h"
 #include <QTextStream>
 
-class StoreCreditCase;
+class MinesweeperMasterCase;
 
-QString SolveCase(const StoreCreditCase & Case);
+QString SolveCase(const MinesweeperMasterCase & Case);
 ///dont forget to add 1, 2, 3 manually
 class Pal012 
 {
@@ -183,11 +183,11 @@ skim:
 typedef int Line[4];
 typedef Line Grid[4];
 
-class StoreCreditCase : public GoogleCase
+class MinesweeperMasterCase : public GoogleCase
 {
 public:
-	StoreCreditCase();
-	~StoreCreditCase() {}
+	MinesweeperMasterCase();
+	~MinesweeperMasterCase() {}
 
 	//! Re-implemented
 	void ParseCase(QTextStream & inputStream);
@@ -204,4 +204,4 @@ public:
 	mutable int R, C, M;
 };
 
-#endif // StoreCreditCase_H
+#endif // MinesweeperMasterCase_H

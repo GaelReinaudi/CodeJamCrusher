@@ -1,18 +1,18 @@
 #include "stdafx.h"
 #include "visualproblemsolver.h"
-#include "StoreCreditCase.h"
+#include "MinesweeperMasterCase.h"
 
 QFile m_FileIn;
 QFile m_FileOut;
 
-VisualProblemSolver::VisualProblemSolver(QWidget *parent, Qt::WindowFlags flags)
+MinesweeperMaster::MinesweeperMaster(QWidget *parent, Qt::WindowFlags flags)
 	: QWidget(parent, flags)
 	, m_NumberCase(0)
 	, m_ShowFileContents(true)
 {
 	ui.setupUi(this);
 	// reload settings
-	QSettings settings("CodeJam", "VisualProblemSolver");
+	QSettings settings("CodeJam", "MinesweeperMaster");
 	m_FileInPath = settings.value("fileInPath", "").toString();
 	m_SampleTableFromWebSite = settings.value("sampleTableFromWebSite", "").toString();
 
@@ -33,35 +33,35 @@ VisualProblemSolver::VisualProblemSolver(QWidget *parent, Qt::WindowFlags flags)
 	restoreGeometry(settings.value("geometry").toByteArray());
 }
 
-VisualProblemSolver::~VisualProblemSolver()
+MinesweeperMaster::~MinesweeperMaster()
 {
 	m_FileIn.close();
 	m_FileOut.close();
 
-	QSettings settings("CodeJam", "VisualProblemSolver");
+	QSettings settings("CodeJam", "MinesweeperMaster");
 	settings.clear();
 	settings.setValue("fileInPath", m_FileInPath);
 	settings.setValue("sampleTableFromWebSite", m_SampleTableFromWebSite);
 	settings.setValue("geometry", saveGeometry());
 }
 
-void VisualProblemSolver::MultiThreadedCompute(VectorCases & allCases)
+void MinesweeperMaster::MultiThreadedCompute(VectorCases & allCases)
 {
 	// solving and making the output
 	QFuture<void> future = QtConcurrent::mappedReduced(allCases, SolveCase, AppendResult, QtConcurrent::OrderedReduce | QtConcurrent::SequentialReduce);
 	m_watcher.setFuture(future);
 }
 
-void VisualProblemSolver::SequencialCompute( VectorCases & allCases )
+void MinesweeperMaster::SequencialCompute( VectorCases & allCases )
 {
-	foreach(StoreCreditCase theCase, allCases) {
+	foreach(MinesweeperMasterCase theCase, allCases) {
 		QString result = SolveCase(theCase);
 		AppendResult(theCase, result);
 	}
 	EventFinishedComputation();
 }
 
-void VisualProblemSolver::dropEvent( QDropEvent* event )
+void MinesweeperMaster::dropEvent( QDropEvent* event )
 {
 	const QMimeData* pMime = event->mimeData();
 	if(pMime->hasUrls()) {
@@ -74,7 +74,7 @@ void VisualProblemSolver::dropEvent( QDropEvent* event )
 	}
 }
 
-QString VisualProblemSolver::MakeSampleInput( QString strFromSampleDrop )
+QString MinesweeperMaster::MakeSampleInput( QString strFromSampleDrop )
 {
 	strFromSampleDrop = strFromSampleDrop.trimmed();
 	if(strFromSampleDrop.startsWith("Input"))
@@ -94,7 +94,7 @@ QString VisualProblemSolver::MakeSampleInput( QString strFromSampleDrop )
 	return sampleIn;
 }
 
-VectorCases VisualProblemSolver::ParseInput(QTextStream & inputStream)
+VectorCases MinesweeperMaster::ParseInput(QTextStream & inputStream)
 {
 	inputStream >> m_NumberCase;
 	ui.pProgressBar->setRange(1, m_NumberCase);
@@ -111,7 +111,7 @@ VectorCases VisualProblemSolver::ParseInput(QTextStream & inputStream)
 	return allCases;
 }
 
-QString VisualProblemSolver::MakeFileInOut( QString pathInput  /*= ""*/)
+QString MinesweeperMaster::MakeFileInOut( QString pathInput  /*= ""*/)
 {
 	QString content;
 	m_FileIn.close();
@@ -123,7 +123,7 @@ QString VisualProblemSolver::MakeFileInOut( QString pathInput  /*= ""*/)
 	else {
 		m_FileIn.setFileName(pathInput);
 		fileOutName = QDir("../Outputs/").exists() ? "../Outputs/" : "";
-		fileOutName += "VisualProblemSolver";
+		fileOutName += "MinesweeperMaster";
 		if(m_FileIn.fileName().contains("small")) {
 			fileOutName += "-Small.txt";
 			m_FileOut.setFileName(fileOutName);
@@ -158,7 +158,7 @@ QString VisualProblemSolver::MakeFileInOut( QString pathInput  /*= ""*/)
 	return content;
 }
 
-void VisualProblemSolver::LoadSample()
+void MinesweeperMaster::LoadSample()
 {
 	// if we load the sample, we ignore every memory of a file
 	m_FileInPath.clear();
@@ -176,7 +176,7 @@ void VisualProblemSolver::LoadSample()
 	SequencialCompute(allCases);
 }
 
-void VisualProblemSolver::LoadFile()
+void MinesweeperMaster::LoadFile()
 {
 	QString content = MakeFileInOut(m_FileInPath);
 
@@ -194,7 +194,7 @@ void VisualProblemSolver::LoadFile()
 	SequencialCompute(allCases);
 }
 
-void VisualProblemSolver::CompareBoxesOutput()
+void MinesweeperMaster::CompareBoxesOutput()
 {
 	bool passes = false;
 	QString strIn = ui.pEditSampleOutput->toPlainText().trimmed();
@@ -204,7 +204,7 @@ void VisualProblemSolver::CompareBoxesOutput()
 	ui.pPassedCheckBox->setChecked(passes);
 }
 
-void VisualProblemSolver::EventFinishedComputation()
+void MinesweeperMaster::EventFinishedComputation()
 {
 	double timeComp = double(m_Timer.elapsed()) / 1000.0;
 	ui.pTimeBox->setValue(timeComp);
@@ -230,7 +230,7 @@ void VisualProblemSolver::EventFinishedComputation()
 	CompareBoxesOutput();
 }
 
-void AppendResult( StoreCreditCase & theCase, const QString & resultCase )
+void AppendResult( MinesweeperMasterCase & theCase, const QString & resultCase )
 {
 	QTextStream out(&m_FileOut);
 	out << resultCase << endl;
