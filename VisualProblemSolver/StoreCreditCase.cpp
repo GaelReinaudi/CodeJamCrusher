@@ -46,9 +46,9 @@ QString SolveCase( const StoreCreditCase & Case )
 
 void StoreCreditCase::ParseCase( QTextStream & inputStream )
 {
+	inputStream >> R;
 	inputStream >> C;
-	inputStream >> F;
-	inputStream >> X;
+	inputStream >> M;
 }
 
 QString StoreCreditCase::Solve() const
@@ -56,12 +56,12 @@ QString StoreCreditCase::Solve() const
 	QString caseSolution("Case #%1: %2");
 	caseSolution = caseSolution.arg(m_CaseNumber);
 
-	QTextStream m_Out(&m_SolString);
+	QTextStream out(&m_SolString);
 
 	
 	//caseSolution = caseSolution.arg(BinarySearch(0,0));
-	caseSolution = caseSolution.arg(compute(), 0, 'f', 7);
-
+	//caseSolution = caseSolution.arg(compute(out));
+	compute(out);
 
 	caseSolution = caseSolution.arg(m_SolString);
 	return caseSolution;
@@ -93,28 +93,97 @@ inline qulonglong StoreCreditCase::BinarySearch( long double Min, long double Ma
 }
 
 
-inline double StoreCreditCase::compute() const
+inline void StoreCreditCase::compute(QTextStream & out) const
 {
-	const int Fmax = 20000000;
-	QVector<double> tF(Fmax);
-	tF[0] = 0.0;
-	int totalFarm = 0;
-	for(int i = 1; i < Fmax; ++i)
+	out << endl;
+	if(R == 1 && C == 1)
 	{
-		tF[i] = tF[i - 1] + C / (2 + double(i-1) * F);
+		if(M > 0)
+		{
+			out << "Impossible";
+			return;
+		}
+		out << "c" << endl;
+		return;
 	}
-	double tx = 1e20;
-	for(int i = 0; i < Fmax; ++i)
+	if(R == 1)
 	{
-		double newtX = tF[i] + X / (2 + double(i) * F);
-		if(newtX < tx)
-			tx = newtX;
-		else 
-			break;
-		if(i==Fmax-1)
-			newtX = 0;
+		if(M > C - 2)
+		{
+			out << "Impossible";
+			return;
+		}
+		out << "c";
+		for(int i = 1; i < C-M; ++i)
+			out << ".";
+		for(int i = C-M; i < C; ++i)
+			out << "*";
+		return;
 	}
-	return tx;
+	if(C == 1)
+	{
+		if(M > R - 2)
+		{
+			out << "Impossible";
+			return;
+		}
+		out << "c";
+		for(int i = 1; i < R-M; ++i)
+			out  << endl << ".";
+		for(int i = R-M; i < R; ++i)
+			out  << endl << "*";
+		return;
+	}
+	// here R >= 2 and C >= 2
+	if(M > R * C - 4)
+	{
+		out << "Impossible";
+		return;
+	}
+
+	int r = R * C - M;
+	int v = r;
+	int x = v / R - 1;
+	out << "c";
+	--r;
+	for(int i = 0; i < R; ++i)
+	{
+		if(i == 0)// first line
+		{
+			out << ".";
+			--r;
+			for(int j = 2; j < C; ++j)
+			{
+				if(j <= x + (v % R > i ? 1 : 0))
+				{
+					out << ".";
+					--r;
+				}
+				else
+				{
+					out << "*";
+				}
+			}
+		}
+		else
+		{
+			out << endl;
+			for(int j = 0; j < C; ++j)
+			{
+				if(j <= x + (v % R >= i + 1 ? 1 : 0))
+				{
+					out << ".";
+					--r;
+				}
+				else
+				{
+					out << "*";
+				}
+			}
+		}
+
+	}
+
 }
 
 

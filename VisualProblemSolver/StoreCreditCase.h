@@ -194,14 +194,14 @@ public:
 	QString Solve() const;
 
 	mutable QString m_SolString;
-	double compute() const;
+	void compute(QTextStream & out) const;
 
 
 	inline bool Calc(qulonglong n) const;
 	inline bool CanDo() const;
 	inline qulonglong BinarySearch( long double Min, long double Max ) const;
 	int r,t;
-	mutable double C, F, X;
+	mutable int R, C, M;
 };
 
 #endif // StoreCreditCase_H
