@@ -95,30 +95,24 @@ inline qulonglong StoreCreditCase::BinarySearch( long double Min, long double Ma
 
 inline double StoreCreditCase::compute() const
 {
-	const int Fmax = 2;
-	float tF[Fmax];
+	const int Fmax = 20000000;
+	QVector<double> tF(Fmax);
 	tF[0] = 0.0;
 	int totalFarm = 0;
-	int stoppedFarm = 0;
-	double tx = 1e20;
-again:
-	for(int i = 0; i < Fmax - 1; ++i)
+	for(int i = 1; i < Fmax; ++i)
 	{
-		tF[i+1] = tF[i] + C / (2 + double(i + stoppedFarm) * F);
+		tF[i] = tF[i - 1] + C / (2 + double(i-1) * F);
 	}
+	double tx = 1e20;
 	for(int i = 0; i < Fmax; ++i)
 	{
-		double newtX = tF[i] + X / (2 + double(i + stoppedFarm) * F);
+		double newtX = tF[i] + X / (2 + double(i) * F);
 		if(newtX < tx)
 			tx = newtX;
 		else 
 			break;
-		if(i==Fmax - 1)
-		{
-			stoppedFarm += Fmax-1;
-			tF[0] = tF[Fmax-1];
-			goto again;
-		}
+		if(i==Fmax-1)
+			newtX = 0;
 	}
 	return tx;
 }
