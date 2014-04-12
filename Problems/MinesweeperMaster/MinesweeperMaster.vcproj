@@ -3,7 +3,7 @@
 	ProjectType="Visual C++"
 	Version="9.00"
 	Name="MinesweeperMaster"
-	ProjectGUID="{6b834474-bcd5-4a08-894f-456f1e077e8c}"
+	ProjectGUID="{c9d82333-0e4b-46cf-87ad-e3afc4170f62}"
 	Keyword="Qt4VSv1.0"
 	TargetFrameworkVersion="0"
 	>

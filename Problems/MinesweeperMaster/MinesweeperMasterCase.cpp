@@ -62,6 +62,8 @@ QString MinesweeperMasterCase::Solve() const
 	//caseSolution = caseSolution.arg(BinarySearch(0,0));
 	//caseSolution = caseSolution.arg(compute(out));
 	compute(out);
+	int ff = m_SolString.count("Impos");
+	++ff;
 
 	caseSolution = caseSolution.arg(m_SolString);
 	return caseSolution;
@@ -160,10 +162,24 @@ inline void MinesweeperMasterCase::compute(QTextStream & out) const
 			--r;
 			imax = i;
 		}
+		else if(r==3 && R > 4)
+		{
+			l[i][0] = '.';
+			--r;
+			l[i][1] = '.';
+			l[0][0] = '*';
+			l[2][0] = 'c';
+		}
+	}
+	if(R==2 && imax>=2)
+	{
 	}
 	
 	if(imax < 1)
+	{
+
 		goto bad;
+	}
 	if(r==0)
 		goto theend;
 	int jj = 2;
@@ -199,13 +215,34 @@ inline void MinesweeperMasterCase::compute(QTextStream & out) const
 			}
 			else if(r == 2 && jj < C - 1)
 			{
-				if(i <= 1)
-					goto bad;
-				l[0][jj+1] = '.';
-				l[1][jj+1] = '.';
-				--r;
-				--r;
-				goto theend;
+				if(i == 1)
+				{
+					if(jj >= 2)
+					{
+						l[i][jj] = '.';
+						l[0][0] = '*';
+						l[0][2] = 'c';
+					}
+					else if(imax >= 3)
+					{
+						l[i][jj] = '.';
+						l[0][0] = '*';
+						l[2][0] = 'c';
+					}
+					else
+						goto bad;
+				}
+				else
+				{
+					l[0][jj+1] = '.';
+					l[1][jj+1] = '.';
+					--r;
+					--r;
+					goto theend;
+				}
+			}
+			else if(r == 2 && jj < C - 1)
+			{
 			}
 		}
 		++jj;
@@ -219,7 +256,7 @@ theend:
 		assert(r>=0);
 
 
-	for(int i = 1; i < R; ++i)
+	for(int i = 0; i < R; ++i)
 	{
 		if(l[i][C] == '.')
 			goto bad;
