@@ -139,6 +139,7 @@ void ProblemZipper::ZipFolder( QString pathToProjectFolder )
 		<< FolderPath + "/*.cpp"
 		<< FolderPath + "/*.txt"
 		<< FolderPath + "/*.vcproj"
+		<< FolderPath + "/*.vcxproj"
 		<< FolderPath + "/*.pro"
 		<< FolderPath + "/*.pri"
 		;

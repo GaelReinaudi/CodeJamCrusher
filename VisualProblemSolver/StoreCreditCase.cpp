@@ -88,10 +88,12 @@ inline qulonglong StoreCreditCase::BinarySearch( long double Min, long double Ma
 			lo = mid+1;
 	}
 	if (Calc(lo) == false)
-		;  // p(x) is false for all x in S!
-	// lo is the least x for which p(x) is true
+	{
+		;  // Calc(x) is false for all x in S!
+	}
+	// lo is the least x for which Calc(x) is true
 
-	return lo - 1;
+	return lo;
 }
 
 

@@ -6,4 +6,5 @@
 /GeneratedFiles/
 /x64/
 *.pdb
-*.exe
+*.ilk
+/ProblemZipper.exe
