@@ -12,6 +12,8 @@ public:
 
 	//! Parses the data specific to that case assuming that the inputStream is at the good position because every other input where >> in the good order.
 	virtual void ParseCase(QTextStream & inputStream) = 0;
+	//! gives this case's number
+	int caseNumber() const { return m_CaseNumber; }
 
 public:
 	int m_CaseNumber;
