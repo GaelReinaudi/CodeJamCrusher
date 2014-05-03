@@ -1,12 +1,12 @@
-#ifndef StoreCreditCase_H
-#define StoreCreditCase_H
+#ifndef TheRepeaterCase_H
+#define TheRepeaterCase_H
 
 #include "GoogleCase.h"
 #include <QTextStream>
 
-class StoreCreditCase;
+class TheRepeaterCase;
 
-QString SolveCase(const StoreCreditCase & Case);
+QString SolveCase(const TheRepeaterCase & Case);
 ///dont forget to add 1, 2, 3 manually
 class Pal012 
 {
@@ -183,11 +183,11 @@ skim:
 typedef int Line[4];
 typedef Line Grid[4];
 
-class StoreCreditCase : public GoogleCase
+class TheRepeaterCase : public GoogleCase
 {
 public:
-	StoreCreditCase();
-	~StoreCreditCase() {}
+	TheRepeaterCase();
+	~TheRepeaterCase() {}
 
 	//! Re-implemented
 	void ParseCase(QTextStream & inputStream);
@@ -205,4 +205,4 @@ public:
 	mutable QStringList strings;
 };
 
-#endif // StoreCreditCase_H
+#endif // TheRepeaterCase_H

@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "StoreCreditCase.h"
+#include "TheRepeaterCase.h"
 #include <QtAlgorithms>
 #include <QPoint>
 
@@ -35,16 +35,16 @@ Pal012 IterRoot10100;
 QVector<Pal012> rootlist10100;
 
 
-StoreCreditCase::StoreCreditCase()
+TheRepeaterCase::TheRepeaterCase()
 {
 }
 
-QString SolveCase( const StoreCreditCase & Case )
+QString SolveCase( const TheRepeaterCase & Case )
 {
 	return Case.Solve();
 }
 
-void StoreCreditCase::ParseCase( QTextStream & inputStream )
+void TheRepeaterCase::ParseCase( QTextStream & inputStream )
 {
 
 	inputStream >> N;
@@ -55,7 +55,7 @@ void StoreCreditCase::ParseCase( QTextStream & inputStream )
 	}
 }
 
-QString StoreCreditCase::Solve() const
+QString TheRepeaterCase::Solve() const
 {
 	QString caseSolution("Case #%1: %2");
 	caseSolution = caseSolution.arg(m_CaseNumber);
@@ -73,13 +73,13 @@ QString StoreCreditCase::Solve() const
 	return caseSolution;
 }
 
-inline bool StoreCreditCase::Calc(qulonglong n) const
+inline bool TheRepeaterCase::Calc(qulonglong n) const
 {
 	qulonglong TsN = 2*r + 2 * n - 1;
 	return TsN > t/n;
 }
 
-inline qulonglong StoreCreditCase::BinarySearch( long double Min, long double Max ) const
+inline qulonglong TheRepeaterCase::BinarySearch( long double Min, long double Max ) const
 {
 	qulonglong lo = 1;
 	qulonglong hi = Q_INT64_C(18446744073709551615);//18,446,744,073,709,551,615
@@ -101,7 +101,7 @@ inline qulonglong StoreCreditCase::BinarySearch( long double Min, long double Ma
 }
 
 
-inline void StoreCreditCase::compute(QTextStream & out) const
+inline void TheRepeaterCase::compute(QTextStream & out) const
 {
 	if(caseNumber() == 6)
 	{
