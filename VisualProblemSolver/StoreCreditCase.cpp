@@ -46,9 +46,22 @@ QString SolveCase( const StoreCreditCase & Case )
 
 void StoreCreditCase::ParseCase( QTextStream & inputStream )
 {
-	inputStream >> A;
-	inputStream >> B;
-	inputStream >> K;
+	inputStream >> N;
+	inputStream >> M;
+	for(int n = 0; n < N; ++n)
+	{
+		zs.append(0);
+		inputStream >> zs[n];
+	}
+	for(int m = 0; m < M; ++m)
+	{
+		int fro = 0;
+		int too = 0;
+		inputStream >> fro;
+		inputStream >> too;
+		ts[zs[fro-1]] = zs[too-1];
+	}
+	qSort(zs.begin(), zs.end());
 }
 
 QString StoreCreditCase::Solve() const
@@ -62,9 +75,6 @@ QString StoreCreditCase::Solve() const
 	//caseSolution = caseSolution.arg(BinarySearch(0,0));
 	//caseSolution = caseSolution.arg(compute(out));
 	compute(out);
-	int ff = m_SolString.count("Impos");
-	++ff;
-
 	caseSolution = caseSolution.arg(m_SolString);
 	return caseSolution;
 }
@@ -100,20 +110,42 @@ inline qulonglong StoreCreditCase::BinarySearch( long double Min, long double Ma
 inline void StoreCreditCase::compute(QTextStream & out) const
 {
 	quint64 n = 0;
-	if(A>B)
-		qSwap(A,B);
-	int BK = qMin(B,K);
-	for(int a = 0; a < A; ++a)
+
+	bool couldFinish = false;
+	for(int n = 0; n < N; ++n)
 	{
-		for(int b = 0; b < B; ++b)
+		QString str;
+		QVector<int> tzp = zs;
+		if(finishTrip(zs[n], str, tzp))
 		{
-			for(int k = 0; k < K; ++k)
-			{
-				n += bool(((a & b) == k));
-			}
+			out << str;
+			return;
 		}
 	}
-	out << n;
+	out << "aaaaaaaaaaaaaaaaaaaaaaaaaa";
+}
+
+
+
+inline int StoreCreditCase::finishTrip(int zip, QString & str, QVector<int> & tzp) const
+{
+	if(tzp.size() == 1)
+	{
+		str.append(QString::number(tzp[0]));
+		return 1;
+	}
+	tzp.remove(tzp.indexOf(zip));
+	for(int n = 0; n < tzp.size(); ++n)
+	{
+		QString ss = str;
+		QVector<int> zz = tzp;
+		if(finishTrip(zs[n], ss, zz))
+		{
+			str.append(ss);
+			return 1;
+		}
+	}
+	return 0;
 }
 
 
