@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "StoreCreditCase.h"
+#include "NewLotteryGameCase.h"
 #include <QtAlgorithms>
 #include <QPoint>
 
@@ -35,23 +35,23 @@ Pal012 IterRoot10100;
 QVector<Pal012> rootlist10100;
 
 
-StoreCreditCase::StoreCreditCase()
+NewLotteryGameCase::NewLotteryGameCase()
 {
 }
 
-QString SolveCase( const StoreCreditCase & Case )
+QString SolveCase( const NewLotteryGameCase & Case )
 {
 	return Case.Solve();
 }
 
-void StoreCreditCase::ParseCase( QTextStream & inputStream )
+void NewLotteryGameCase::ParseCase( QTextStream & inputStream )
 {
 	inputStream >> A;
 	inputStream >> B;
 	inputStream >> K;
 }
 
-QString StoreCreditCase::Solve() const
+QString NewLotteryGameCase::Solve() const
 {
 	QString caseSolution("Case #%1: %2");
 	caseSolution = caseSolution.arg(m_CaseNumber);
@@ -69,13 +69,13 @@ QString StoreCreditCase::Solve() const
 	return caseSolution;
 }
 
-inline bool StoreCreditCase::Calc(qulonglong n) const
+inline bool NewLotteryGameCase::Calc(qulonglong n) const
 {
 	qulonglong TsN = 2*r + 2 * n - 1;
 	return TsN > t/n;
 }
 
-inline qulonglong StoreCreditCase::BinarySearch( long double Min, long double Max ) const
+inline qulonglong NewLotteryGameCase::BinarySearch( long double Min, long double Max ) const
 {
 	qulonglong lo = 1;
 	qulonglong hi = Q_INT64_C(18446744073709551615);//18,446,744,073,709,551,615
@@ -97,19 +97,21 @@ inline qulonglong StoreCreditCase::BinarySearch( long double Min, long double Ma
 }
 
 
-inline void StoreCreditCase::compute(QTextStream & out) const
+inline void NewLotteryGameCase::compute(QTextStream & out) const
 {
+	if(caseNumber() == 21)
+	{
+		// can put a break point here
+		int fff=0; ++fff;
+	}
 	quint64 n = 0;
-	if(A>B)
-		qSwap(A,B);
-	int BK = qMin(B,K);
 	for(int a = 0; a < A; ++a)
 	{
 		for(int b = 0; b < B; ++b)
 		{
 			for(int k = 0; k < K; ++k)
 			{
-				n += bool(((a & b) == k));
+				n += bool((a & b) == k);
 			}
 		}
 	}
