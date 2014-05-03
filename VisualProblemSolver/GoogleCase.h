@@ -16,7 +16,7 @@ public:
 	int caseNumber() const { return m_CaseNumber; }
 
 public:
-	mutable int m_CaseNumber;
+	int m_CaseNumber;
 
 	
 };

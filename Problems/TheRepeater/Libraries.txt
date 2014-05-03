@@ -1,2 +1,0 @@
-Libraries that are used:
-- The Qt framework (http://qt.nokia.com/)

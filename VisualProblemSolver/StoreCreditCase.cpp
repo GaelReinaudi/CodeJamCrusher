@@ -46,13 +46,9 @@ QString SolveCase( const StoreCreditCase & Case )
 
 void StoreCreditCase::ParseCase( QTextStream & inputStream )
 {
-
-	inputStream >> N;
-	for(int i = 0; i < N; ++i)
-	{
-		strings.append(QString());
-		inputStream >> strings[i];
-	}
+	inputStream >> R;
+	inputStream >> C;
+	inputStream >> M;
 }
 
 QString StoreCreditCase::Solve() const
@@ -103,69 +99,12 @@ inline qulonglong StoreCreditCase::BinarySearch( long double Min, long double Ma
 
 inline void StoreCreditCase::compute(QTextStream & out) const
 {
-	if(caseNumber() == 6)
+	if(caseNumber() == 21)
 	{
 		// can put a break point here
 		int fff=0; ++fff;
 	}
-	// each string
-	QStringList noDup = strings;
-	QList<QList<int> > rep;
-	for(int n = 0; n < N; ++n)
-	{
-		QString & str = noDup[n];
-		rep.append(QList<int>());
-		// cut duplicate
-		int i = 0;
-		int locRep = 1;
-		if(str.size() == 1)
-			rep[n].append(1);
-		else{
-		while(i < str.size() - 1)
-		{
-			if(str[i] == str[i+1])
-			{
-				str.remove(i, 1);
-				++locRep;
-				if(i == str.size() - 1)
-					rep[n].append(locRep);
-			}
-			else
-			{
-				rep[n].append(locRep);
-				locRep = 1;
-				if(i == str.size() - 2)
-					rep[n].append(1);
-				++i;
-			}
-		}
-		}
-	}
-	noDup.removeDuplicates();
-	if(noDup.count() > 1)
-	{
-		out << "Fegla Won";
-		return;
-	}
 
-		int nIter = 0;
-	for(int r = 0; r < rep[0].size(); ++r)
-	{
-		double ncharTot = 0;
-		// each string
-		for(int n = 0; n < N; ++n)
-		{
-			ncharTot += rep[n][r];
-		}
-		double av = ncharTot / strings.count();
-		for(int n = 0; n < N; ++n)
-		{
-			int strSz = rep[n][r];
-			int diff = int(av+0.5) - strSz;
-			nIter += qAbs(diff);
-		}
-	}
-	out << nIter;
 }
 
 
