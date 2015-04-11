@@ -1,12 +1,12 @@
-#ifndef StoreCreditCase_H
-#define StoreCreditCase_H
+#ifndef InfiniteHouseOfPancakesCase_H
+#define InfiniteHouseOfPancakesCase_H
 
 #include "GoogleCase.h"
 #include <QTextStream>
 
-class StoreCreditCase;
+class InfiniteHouseOfPancakesCase;
 
-QString SolveCase(const StoreCreditCase & Case);
+QString SolveCase(const InfiniteHouseOfPancakesCase & Case);
 ///dont forget to add 1, 2, 3 manually
 class Pal012 
 {
@@ -183,11 +183,11 @@ skim:
 typedef int Line[4];
 typedef Line Grid[4];
 
-class StoreCreditCase : public GoogleCase
+class InfiniteHouseOfPancakesCase : public GoogleCase
 {
 public:
-	StoreCreditCase();
-	~StoreCreditCase() {}
+	InfiniteHouseOfPancakesCase();
+	~InfiniteHouseOfPancakesCase() {}
 
 	//! Re-implemented
 	void ParseCase(QTextStream & inputStream);
@@ -207,4 +207,4 @@ public:
 	mutable int biggestStack = 0;
 };
 
-#endif // StoreCreditCase_H
+#endif // InfiniteHouseOfPancakesCase_H

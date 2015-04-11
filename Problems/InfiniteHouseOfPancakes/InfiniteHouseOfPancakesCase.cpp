@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "StoreCreditCase.h"
+#include "InfiniteHouseOfPancakesCase.h"
 #include <QtAlgorithms>
 #include <QPoint>
 
@@ -35,16 +35,16 @@ Pal012 IterRoot10100;
 QVector<Pal012> rootlist10100;
 
 
-StoreCreditCase::StoreCreditCase()
+InfiniteHouseOfPancakesCase::InfiniteHouseOfPancakesCase()
 {
 }
 
-QString SolveCase( const StoreCreditCase & Case )
+QString SolveCase( const InfiniteHouseOfPancakesCase & Case )
 {
 	return Case.Solve();
 }
 
-void StoreCreditCase::ParseCase( QTextStream & inputStream )
+void InfiniteHouseOfPancakesCase::ParseCase( QTextStream & inputStream )
 {
 	inputStream >> D;
 	int pi = 0;
@@ -59,7 +59,7 @@ void StoreCreditCase::ParseCase( QTextStream & inputStream )
 	qDebug() << numStackAtN[0] << numStackAtN[1] << numStackAtN[2] << numStackAtN[3] << numStackAtN[4] << "biggest" << biggestStack;
 }
 
-QString StoreCreditCase::Solve() const
+QString InfiniteHouseOfPancakesCase::Solve() const
 {
 	QString caseSolution("Case #%1: %2");
 	caseSolution = caseSolution.arg(m_CaseNumber);
@@ -77,13 +77,13 @@ QString StoreCreditCase::Solve() const
 	return caseSolution;
 }
 
-inline bool StoreCreditCase::Calc(qulonglong n) const
+inline bool InfiniteHouseOfPancakesCase::Calc(qulonglong n) const
 {
 	qulonglong TsN = 2*r + 2 * n - 1;
 	return TsN > t/n;
 }
 
-inline qulonglong StoreCreditCase::BinarySearch( long double Min, long double Max ) const
+inline qulonglong InfiniteHouseOfPancakesCase::BinarySearch( long double Min, long double Max ) const
 {
 	qulonglong lo = 1;
 	qulonglong hi = Q_INT64_C(18446744073709551615);//18,446,744,073,709,551,615
@@ -104,7 +104,7 @@ inline qulonglong StoreCreditCase::BinarySearch( long double Min, long double Ma
 	return lo;
 }
 
-inline void StoreCreditCase::compute(QTextStream & out) const
+inline void InfiniteHouseOfPancakesCase::compute(QTextStream & out) const
 {
 	int flip = 0;
 	qint64 tot = 0;
@@ -119,7 +119,7 @@ inline void StoreCreditCase::compute(QTextStream & out) const
 	out << totalCost;
 }
 
-inline int StoreCreditCase::costBringAllAtN(int n) const
+inline int InfiniteHouseOfPancakesCase::costBringAllAtN(int n) const
 {
 	int cost = 0;
 	for (int i = 0; i <= biggestStack; ++i) {
