@@ -201,7 +201,9 @@ public:
 	inline bool CanDo() const;
 	inline qulonglong BinarySearch( long double Min, long double Max ) const;
 	int r,t;
-	mutable int A, B, K;
+	mutable int S, B, K;
+	mutable QString list;
+	mutable QVector<int> c;
 };
 
 #endif // StoreCreditCase_H

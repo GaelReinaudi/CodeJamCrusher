@@ -46,9 +46,11 @@ QString SolveCase( const StoreCreditCase & Case )
 
 void StoreCreditCase::ParseCase( QTextStream & inputStream )
 {
-	inputStream >> A;
-	inputStream >> B;
-	inputStream >> K;
+	inputStream >> S;
+	inputStream >> list;
+	for (int i = 0; i < list.count(); ++i) {
+		c.append(list.mid(i, 1).toInt());
+	}
 }
 
 QString StoreCreditCase::Solve() const
@@ -99,21 +101,26 @@ inline qulonglong StoreCreditCase::BinarySearch( long double Min, long double Ma
 
 inline void StoreCreditCase::compute(QTextStream & out) const
 {
-	quint64 n = 0;
-	if(A>B)
-		qSwap(A,B);
-	int BK = qMin(B,K);
-	for(int a = 0; a < A; ++a)
-	{
-		for(int b = 0; b < B; ++b)
-		{
-			for(int k = 0; k < K; ++k)
-			{
-				n += bool(((a & b) == k));
-			}
-		}
+	qint64 tot = 0;
+	qint64 missing = 0;
+	for (int i = 0; i <= S; ++i) {
+		missing = qMax(missing, i - tot);
+		tot += c[i];
 	}
-	out << n;
+	//if(A>B)
+	//	qSwap(A,B);
+	//int BK = qMin(B,K);
+	//for(int a = 0; a < A; ++a)
+	//{
+	//	for(int b = 0; b < B; ++b)
+	//	{
+	//		for(int k = 0; k < K; ++k)
+	//		{
+	//			n += bool(((a & b) == k));
+	//		}
+	//	}
+	//}
+	out << missing;
 }
 
 
