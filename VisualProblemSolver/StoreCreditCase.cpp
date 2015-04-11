@@ -46,10 +46,11 @@ QString SolveCase( const StoreCreditCase & Case )
 
 void StoreCreditCase::ParseCase( QTextStream & inputStream )
 {
-	inputStream >> S;
-	inputStream >> list;
-	for (int i = 0; i < list.count(); ++i) {
-		c.append(list.mid(i, 1).toInt());
+	inputStream >> D;
+	int pi = 0;
+	for (int i = 0; i < D; ++i) {
+		inputStream >> pi;
+		p.append(pi);
 	}
 }
 
@@ -101,29 +102,43 @@ inline qulonglong StoreCreditCase::BinarySearch( long double Min, long double Ma
 
 inline void StoreCreditCase::compute(QTextStream & out) const
 {
+	int flip = 0;
 	qint64 tot = 0;
-	qint64 missing = 0;
-	for (int i = 0; i <= S; ++i) {
-		missing = qMax(missing, i - tot);
-		tot += c[i];
+	int withMax = 0;
+	int pMax = 0;
+	for (int i = 0; i < D; ++i) {
+		pMax = qMax(pMax, p[i]);
 	}
-	//if(A>B)
-	//	qSwap(A,B);
-	//int BK = qMin(B,K);
-	//for(int a = 0; a < A; ++a)
-	//{
-	//	for(int b = 0; b < B; ++b)
-	//	{
-	//		for(int k = 0; k < K; ++k)
-	//		{
-	//			n += bool(((a & b) == k));
-	//		}
-	//	}
-	//}
-	out << missing;
+	for (int i = 0; i < D; ++i) {
+		if (p[i] == pMax)
+			++withMax;
+	}
+
+	out << flip;
 }
 
+inline int StoreCreditCase::waitingCost(const QVector<int>& pList) const
+{
+	int withMax = 0;
+	int pMax = 0;
+	for (int i = 0; i < pList.count(); ++i) {
+		pMax = qMax(pMax, pList[i]);
+	}
+	return pMax;
+}
 
+inline int StoreCreditCase::splitAllAtCost(int n, QVector<int>& pList) const
+{
+	int split = 0;
+	for (int i = 0; i < pList.count(); ++i) {
+		if (pList[i] > n) {
+			pList.append(pList[i] - n);
+			pList[i] = n;
+			++split;
+		}
+	}
+	return split;
+}
 
 
 

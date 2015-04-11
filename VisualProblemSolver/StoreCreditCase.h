@@ -198,12 +198,12 @@ public:
 	bool pair(int val) const {return val % 2 == 0;}
 
 	inline bool Calc(qulonglong n) const;
-	inline bool CanDo() const;
-	inline qulonglong BinarySearch( long double Min, long double Max ) const;
+	inline int waitingCost(const QVector<int>& pList) const;
+	inline int splitAllAtCost(int n, QVector<int>& pList) const;
+	inline qulonglong BinarySearch(long double Min, long double Max) const;
 	int r,t;
-	mutable int S, B, K;
-	mutable QString list;
-	mutable QVector<int> c;
+	mutable int D;
+	mutable QVector<int> p;
 };
 
 #endif // StoreCreditCase_H
