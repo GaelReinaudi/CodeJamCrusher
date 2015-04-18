@@ -1,12 +1,12 @@
-#ifndef StoreCreditCase_H
-#define StoreCreditCase_H
+#ifndef HaircutCase_H
+#define HaircutCase_H
 
 #include "GoogleCase.h"
 #include <QTextStream>
 
-class StoreCreditCase;
+class HaircutCase;
 
-QString SolveCase(const StoreCreditCase & Case);
+QString SolveCase(const HaircutCase & Case);
 ///dont forget to add 1, 2, 3 manually
 class Pal012 
 {
@@ -183,11 +183,11 @@ skim:
 typedef int Line[4];
 typedef Line Grid[4];
 
-class StoreCreditCase : public GoogleCase
+class HaircutCase : public GoogleCase
 {
 public:
-	StoreCreditCase();
-	~StoreCreditCase() {}
+	HaircutCase();
+	~HaircutCase() {}
 
 	//! Re-implemented
 	void ParseCase(QTextStream & inputStream);
@@ -208,4 +208,4 @@ public:
 	mutable QVector<qulonglong> c;
 };
 
-#endif // StoreCreditCase_H
+#endif // HaircutCase_H

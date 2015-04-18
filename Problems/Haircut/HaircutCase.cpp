@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "StoreCreditCase.h"
+#include "HaircutCase.h"
 #include <QtAlgorithms>
 #include <QPoint>
 
@@ -35,16 +35,16 @@ Pal012 IterRoot10100;
 QVector<Pal012> rootlist10100;
 
 
-StoreCreditCase::StoreCreditCase()
+HaircutCase::HaircutCase()
 {
 }
 
-QString SolveCase( const StoreCreditCase & Case )
+QString SolveCase( const HaircutCase & Case )
 {
 	return Case.Solve();
 }
 
-void StoreCreditCase::ParseCase( QTextStream & inputStream )
+void HaircutCase::ParseCase( QTextStream & inputStream )
 {
 	//inputStream >> S;
 	//inputStream >> list;
@@ -60,7 +60,7 @@ void StoreCreditCase::ParseCase( QTextStream & inputStream )
 	}
 }
 
-QString StoreCreditCase::Solve() const
+QString HaircutCase::Solve() const
 {
 	QString caseSolution("Case #%1: %2");
 	caseSolution = caseSolution.arg(m_CaseNumber);
@@ -78,7 +78,7 @@ QString StoreCreditCase::Solve() const
 	return caseSolution;
 }
 
-inline bool StoreCreditCase::Calc(qulonglong n) const
+inline bool HaircutCase::Calc(qulonglong n) const
 {
 	qulonglong cust = 0;
 	for (int i = 0; i < B; ++i) {
@@ -88,7 +88,7 @@ inline bool StoreCreditCase::Calc(qulonglong n) const
 	return cust >= N - B;
 }
 
-inline qulonglong StoreCreditCase::BinarySearch(long double Min, long double Max) const
+inline qulonglong HaircutCase::BinarySearch(long double Min, long double Max) const
 {
 	qulonglong lo = 0;
 	qulonglong hi = Q_INT64_C(18446744073709);// 551615);//18,446,744,073,709,551,615
@@ -108,7 +108,7 @@ inline qulonglong StoreCreditCase::BinarySearch(long double Min, long double Max
 
 	return lo;
 }
-inline bool StoreCreditCase::Calc2(qulonglong n) const
+inline bool HaircutCase::Calc2(qulonglong n) const
 {
 	qulonglong cust = 0;
 	for (qulonglong i = 0; i < B; ++i) {
@@ -125,7 +125,7 @@ inline bool StoreCreditCase::Calc2(qulonglong n) const
 	return false;
 }
 
-inline qulonglong StoreCreditCase::BinarySearch2(long double Min, long double Max) const
+inline qulonglong HaircutCase::BinarySearch2(long double Min, long double Max) const
 {
 	qulonglong lo = 0;
 	qulonglong hi = Q_INT64_C(18446744073709551615) / qulonglong(B+1);//18,446,744,073,709,551,615
@@ -147,7 +147,7 @@ inline qulonglong StoreCreditCase::BinarySearch2(long double Min, long double Ma
 }
 
 
-inline void StoreCreditCase::compute(QTextStream & out) const
+inline void HaircutCase::compute(QTextStream & out) const
 {
 	qint64 barb = 0;
 
