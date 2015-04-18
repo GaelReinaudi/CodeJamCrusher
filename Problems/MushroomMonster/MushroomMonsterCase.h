@@ -1,12 +1,12 @@
-#ifndef StoreCreditCase_H
-#define StoreCreditCase_H
+#ifndef MushroomMonsterCase_H
+#define MushroomMonsterCase_H
 
 #include "GoogleCase.h"
 #include <QTextStream>
 
-class StoreCreditCase;
+class MushroomMonsterCase;
 
-QString SolveCase(const StoreCreditCase & Case);
+QString SolveCase(const MushroomMonsterCase & Case);
 ///dont forget to add 1, 2, 3 manually
 class Pal012 
 {
@@ -183,11 +183,11 @@ skim:
 typedef int Line[4];
 typedef Line Grid[4];
 
-class StoreCreditCase : public GoogleCase
+class MushroomMonsterCase : public GoogleCase
 {
 public:
-	StoreCreditCase();
-	~StoreCreditCase() {}
+	MushroomMonsterCase();
+	~MushroomMonsterCase() {}
 
 	//! Re-implemented
 	void ParseCase(QTextStream & inputStream);
@@ -206,4 +206,4 @@ public:
 	mutable QVector<int> c;
 };
 
-#endif // StoreCreditCase_H
+#endif // MushroomMonsterCase_H
