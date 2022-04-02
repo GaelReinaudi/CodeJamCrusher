@@ -1,14 +1,20 @@
+from typing import List
+import punchcard
+
 if __name__ == "__main__":
-    LINES_INPOUT = \
+    INPUT_LINES = \
 """
+
 3
 3 4
 2 2
 2 3
-""".splitlines()[1:]
-    N_CASE = int(LINES_INPOUT.pop(0))
+
+""".splitlines()
+    INPUT_LINES = [line for line in INPUT_LINES if line]
     OUTPUT_LINES = \
 """
+
 Case #1:
 ..+-+-+-+
 ..|.|.|.|
@@ -29,20 +35,10 @@ Case #3:
 +-+-+-+
 |.|.|.|
 +-+-+-+
-""".splitlines()[1:]
 
-else:
-    N_CASE = int(input())
-    LINES_INPOUT = []
-    OUTPUT_LINES = None
-    for case in range(N_CASE):
-        LINES_INPOUT.append([input()])
+""".splitlines()
+    OUTPUT_LINES = [line for line in OUTPUT_LINES if line]
 
-for i, case_input in enumerate(LINES_INPOUT):
-    li = f"Case #{i+1}:"
-    if OUTPUT_LINES:
-        correct = OUTPUT_LINES.pop(0)
-        assert li == correct, f"\n{li}\nshould be:\n{correct}"
 
-    print(li)
-    solve(case_input, OUTPUT_LINES)
+punchcard.run(INPUT_LINES=INPUT_LINES, OUTPUT_LINES=OUTPUT_LINES)
+
