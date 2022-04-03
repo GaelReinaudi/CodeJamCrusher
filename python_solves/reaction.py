@@ -1,3 +1,4 @@
+import multiprocessing
 from typing import List
 
 
@@ -57,12 +58,11 @@ def solve(case: int, case_input: List[str], OUTPUT_LINES: List[str] = None):
 
     fun, total_fun = abyss.total_fun()
     solution = total_fun + fun
-    print_output(
-        f"Case #{case}: " + str(solution), OUTPUT_LINES,
-    )
+    return solution
 
 
 def run(INPUT_LINES: List[str] = None, OUTPUT_LINES: List[str] = None):
+    pool = multiprocessing.Pool(8)
     N_CASE = int(read_input(INPUT_LINES))
     ALL_CASES_INPUT: List[List[str]] = []
 
@@ -74,8 +74,14 @@ def run(INPUT_LINES: List[str] = None, OUTPUT_LINES: List[str] = None):
         ]
         ALL_CASES_INPUT.append(CASE_INPUT)
 
-    for i, case_input in enumerate(ALL_CASES_INPUT):
-        solve(i + 1, case_input, OUTPUT_LINES)
+    solutions = [
+        pool.apply(solve, args=(i + 1, case_input))
+        for i, case_input in enumerate(ALL_CASES_INPUT)
+    ]
+    pool.close()    
+
+    for case, s in enumerate(solutions):
+        print_output(f"Case #{case}: " + str(s),)
 
 
 if __name__ == "__main__":
