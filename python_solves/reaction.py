@@ -1,4 +1,3 @@
-import multiprocessing
 from typing import List
 
 
@@ -48,6 +47,20 @@ class Node:
         return max_fun, rest_fun + max_tot
 
 
+def get_input(INPUT_LINES: List[str] = None,):
+    N_CASE = int(read_input(INPUT_LINES))
+    ALL_CASES_INPUT: List[List[str]] = []
+
+    for case in range(N_CASE):
+        CASE_INPUT = [
+            read_input(INPUT_LINES),
+            read_input(INPUT_LINES),
+            read_input(INPUT_LINES),
+        ]
+        ALL_CASES_INPUT.append(CASE_INPUT)
+    return ALL_CASES_INPUT
+
+
 def solve(case: int, case_input: List[str], OUTPUT_LINES: List[str] = None):
     num_nodes = int(case_input[0])
     funs = [int(x) for x in case_input[1].split()]
@@ -62,23 +75,23 @@ def solve(case: int, case_input: List[str], OUTPUT_LINES: List[str] = None):
 
 
 def run(INPUT_LINES: List[str] = None, OUTPUT_LINES: List[str] = None):
+    ALL_CASES_INPUT = get_input(INPUT_LINES=INPUT_LINES)
+
+    for i, case_input in enumerate(ALL_CASES_INPUT):
+        solve(i + 1, case_input, OUTPUT_LINES)
+
+
+def run_parallel(INPUT_LINES: List[str] = None, OUTPUT_LINES: List[str] = None):
+    import multiprocessing
+
+    ALL_CASES_INPUT = get_input(INPUT_LINES=INPUT_LINES)
+
     pool = multiprocessing.Pool(8)
-    N_CASE = int(read_input(INPUT_LINES))
-    ALL_CASES_INPUT: List[List[str]] = []
-
-    for case in range(N_CASE):
-        CASE_INPUT = [
-            read_input(INPUT_LINES),
-            read_input(INPUT_LINES),
-            read_input(INPUT_LINES),
-        ]
-        ALL_CASES_INPUT.append(CASE_INPUT)
-
     solutions = [
         pool.apply(solve, args=(i + 1, case_input))
         for i, case_input in enumerate(ALL_CASES_INPUT)
     ]
-    pool.close()    
+    pool.close()
 
     for case, s in enumerate(solutions):
         print_output(f"Case #{case}: " + str(s),)
