@@ -5,7 +5,7 @@ if __name__ == "__main__":
     INPUT_LINES = (
         """
 
-106
+6
 1
 111
 0
@@ -27,16 +27,19 @@ if __name__ == "__main__":
 
 
 """
-        + (
-            """
-800
-"""
-            + "100 100 100 90 80 100 90 100 " * 100
-            + "\n"
-            + "0 1 2 1 2 3 1 3 " * 100
-        )
-        * 100
+
+#         + (
+#             """
+# 800
+# """
+#             + "100 100 100 90 80 100 90 100 " * 100
+#             + "\n"
+#             + "0 1 2 1 2 3 1 3 " * 100
+#         )
+#         * 100
+
     )
+    
     INPUT_LINES = INPUT_LINES.splitlines()
     INPUT_LINES = [line for line in INPUT_LINES if line]
     OUTPUT_LINES = """
@@ -53,12 +56,19 @@ Case #6: 490
     OUTPUT_LINES = [line for line in OUTPUT_LINES if line]
 
 
-p = Profiler()
-with p:
-    solver.run(INPUT_LINES=INPUT_LINES, OUTPUT_LINES=OUTPUT_LINES)
-p.print(show_all=False)
+p1 = Profiler()
+with p1:
+    solver.run(
+        INPUT_LINES=list(INPUT_LINES),
+        OUTPUT_LINES=list(OUTPUT_LINES),
+    )
 
-# p = Profiler()
-# with p:
-#     solver.run_parallel(INPUT_LINES=INPUT_LINES, OUTPUT_LINES=OUTPUT_LINES)
-# p.print(show_all=False)
+# p2 = Profiler()
+# with p2:
+#     solver.run_parallel(
+#         INPUT_LINES=list(INPUT_LINES),
+#         OUTPUT_LINES=list(OUTPUT_LINES),
+#     )
+
+p1.print(show_all=False)
+# p2.print(show_all=False)

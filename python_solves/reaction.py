@@ -77,8 +77,13 @@ def solve(case: int, case_input: List[str], OUTPUT_LINES: List[str] = None):
 def run(INPUT_LINES: List[str] = None, OUTPUT_LINES: List[str] = None):
     ALL_CASES_INPUT = get_input(INPUT_LINES=INPUT_LINES)
 
+    solutions = []
     for i, case_input in enumerate(ALL_CASES_INPUT):
-        solve(i + 1, case_input, OUTPUT_LINES)
+        sol = solve(i + 1, case_input, OUTPUT_LINES)
+        solutions.append(sol)
+
+    for case, s in enumerate(solutions):
+        print_output(f"Case #{case}: " + str(s),)
 
 
 def run_parallel(INPUT_LINES: List[str] = None, OUTPUT_LINES: List[str] = None):
